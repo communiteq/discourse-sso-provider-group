@@ -1,0 +1,7 @@
+plugins:
+  sso_provider_group_enabled:
+    default: false
+  sso_provider_group_allowed_groups:
+    type: list
+    default: "admins|moderators"
+
