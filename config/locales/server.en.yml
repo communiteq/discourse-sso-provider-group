@@ -1,0 +1,5 @@
+en:
+  site_settings:
+    sso_provider_group_enabled: "Enable SSO Provider Group plugin" 
+    sso_provider_group_allowed_groups: "Only act as SSO Provider if authenticating user belongs to one of these groups" 
+
