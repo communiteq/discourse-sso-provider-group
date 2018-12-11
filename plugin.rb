@@ -22,7 +22,7 @@ after_initialize do
     def sso_provider(payload = nil)
       if SiteSetting.sso_provider_group_enabled
         if current_user
-          return render body: nil, status: 404 unless OverrideSSOProvider::in_allowed_group current_user
+          return render body: "You are not allowed to authenticate", status: 403 unless OverrideSSOProvider::in_allowed_group current_user
           super(payload)
         else
           cookies[:sso_payload] = request.query_string
