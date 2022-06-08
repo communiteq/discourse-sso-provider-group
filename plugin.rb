@@ -1,6 +1,6 @@
 # name: discourse-sso-provider-group
 # about: Restrict SSO provider to users in specific groups
-# version: 0.1
+# version: 0.2
 # authors: richard@discoursehosting.com
 # url: https://github.com/discoursehosting/discourse-sso-provider-group
 
@@ -19,7 +19,7 @@ after_initialize do
       false
     end
 
-    def sso_provider(payload = nil)
+    def sso_provider(payload = nil, confirmed_2fa_during_login = false)
       if SiteSetting.sso_provider_group_enabled
         if current_user
           return render body: "You are not allowed to authenticate", status: 403 unless OverrideSSOProvider::in_allowed_group current_user
@@ -29,7 +29,7 @@ after_initialize do
           redirect_to path('/login')
         end
       else
-        super(payload)
+        super(payload, confirmed_2fa_during_login)
       end
     end
   end
